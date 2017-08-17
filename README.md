@@ -81,6 +81,8 @@ Default: `stylish`
 
 Custom error formatter or the name of a built-in formatter.
 
+### tsConfigSearchPath
+
 
 # License
 

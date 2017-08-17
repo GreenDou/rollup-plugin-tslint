@@ -22,8 +22,6 @@ export default function tslint (options = {}) {
 
   const tsConfigSearchPath = options.tsConfigSearchPath || process.cwd()
   const tsConfigFile = ts.findConfigFile(tsConfigSearchPath, ts.sys.fileExists)
-  const program = Linter.createProgram(tsConfigFile)
-  const linter = new Linter(options, program)
 
   return {
     name: 'tslint',
@@ -38,6 +36,8 @@ export default function tslint (options = {}) {
       const configuration = Linter.loadConfigurationFromPath(Linter.findConfigurationPath(null, fileName))
       const fileContents = fs.readFileSync(fileName, 'utf8')
 
+      const program = Linter.createProgram(tsConfigFile)
+      const linter = new Linter(options, program)
       linter.lint(id, fileContents, configuration)
       const result = linter.getResult()
 
